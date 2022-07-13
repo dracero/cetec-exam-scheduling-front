@@ -37,10 +37,15 @@
   }
 }
 
-img,
-button {
+img {
   display: block;
   padding: 20px;
+}
+
+button {
+  display: block;
+  padding: 10px;
+  margin: 10px;
 }
 
 #container {
@@ -66,4 +71,8 @@ button {
 
 #dropdown {
   align-items: left;
+}
+
+.Title {
+  margin-bottom: 20px;
 }

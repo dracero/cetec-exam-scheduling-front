@@ -27,9 +27,9 @@ const Start = () => {
         <Stack spacing={3}>
           <DateTimePicker
             label="Hora de inicio"
-            value={start}
+            value={start || null}
             onChange={handleChange}
-            renderInput={(params) => <TextField {...params} />}
+            renderInput={(params) => <TextField {...params} sx={{ m: 1 }} />}
           />
         </Stack>
       </LocalizationProvider>

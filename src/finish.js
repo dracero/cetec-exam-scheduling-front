@@ -25,9 +25,9 @@ const Finish = () => {
         <Stack spacing={3}>
           <DateTimePicker
             label="Hora de finalización"
-            value={finish}
+            value={finish || null}
             onChange={handleChange}
-            renderInput={(params) => <TextField {...params} />}
+            renderInput={(params) => <TextField {...params} sx={{ m: 1 }} />}
           />
         </Stack>
       </LocalizationProvider>

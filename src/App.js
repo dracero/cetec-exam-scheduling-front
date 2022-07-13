@@ -61,7 +61,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} alt="Logo FIUBA" className="logo-img" />
-        EXAM SCHEDULING
+        <div className="Title">EXAM SCHEDULING</div>
         <Courses />
         <Start />
         <Finish />
