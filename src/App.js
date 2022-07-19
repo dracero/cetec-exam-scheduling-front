@@ -42,9 +42,10 @@ function App() {
 
     axios({
       method: "post",
-      url: "http://localhost:8081/exam",
+      url: "http://localhost:8080/exam",
       data: bodyFormData,
       headers: { "Content-Type": "multipart/form-data" },
+      withCredentials: true
     })
       .then(function (response) {
         //handle success
