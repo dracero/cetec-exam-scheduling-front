@@ -24,7 +24,7 @@ function App() {
   const upload = useCallback(() => {
 
     const data = {
-      email:"mail77@test.com",
+      email:"mail88@test.com",
       course: course,
       start: start,
       finish: finish,
