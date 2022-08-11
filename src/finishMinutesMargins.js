@@ -4,7 +4,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import * as finishMinutesMarginActions from "./app/actions/FinishMinutesMarginActions";
+import * as examActions from "./app/actions/ExamActions";
 
 const finishMinutesMargins = [
   5,
@@ -15,10 +15,10 @@ const finishMinutesMargins = [
 const FinishMinutesMargins = () => {
 
   const dispatch = useDispatch();
-  const finishMinutesMargin = useSelector((store) => store.finishMinutesMargin.finishMinutesMargin);
+  const finishMinutesMargin = useSelector((store) => store.finishMinutesMargin);
 
   const handleChange = (event) => {
-    dispatch(finishMinutesMarginActions.finishMinutesMargin(event.target.value));
+    dispatch(examActions.finishMinutesMargin(event.target.value));
   };
 
   return (

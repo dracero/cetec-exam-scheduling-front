@@ -4,7 +4,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import * as courseActions from "./app/actions/CourseActions";
+import * as examActions from "./app/actions/ExamActions";
 
 const courses = [
   "Rodriguez",
@@ -15,10 +15,10 @@ const courses = [
 const Courses = () => {
 
   const dispatch = useDispatch();
-  const course = useSelector((store) => store.course.course);
+  const course = useSelector((store) => store.course);
 
   const handleChange = (event) => {
-    dispatch(courseActions.course(event.target.value));
+    dispatch(examActions.course(event.target.value));
   };
 
   return (

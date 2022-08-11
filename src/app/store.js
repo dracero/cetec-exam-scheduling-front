@@ -1,18 +1,6 @@
 
-import { createStore, combineReducers } from "redux";
-import { courseReducer } from "./reducers/CourseReducer";
-import { startReducer } from "./reducers/StartReducer";
-import { finishReducer } from "./reducers/FinishReducer";
-import { startMinutesMarginReducer } from "./reducers/StartMinutesMarginReducer";
-import { finishMinutesMarginReducer } from "./reducers/FinishMinutesMarginReducer";
+import { createStore } from "redux";
+import { examReducer } from "./reducers/ExamReducer";
 import { composeWithDevTools } from "redux-devtools-extension";
 
-const reducer = combineReducers({
-    course: courseReducer,
-    start: startReducer,
-    finish: finishReducer,
-    startMinutesMargin: startMinutesMarginReducer,
-    finishMinutesMargin: finishMinutesMarginReducer
-  })
-
-export default createStore(reducer, composeWithDevTools());
+export default createStore(examReducer, composeWithDevTools());

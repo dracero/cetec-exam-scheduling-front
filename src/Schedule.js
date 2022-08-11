@@ -4,15 +4,11 @@ import './App.css';
 import { React, useCallback, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Courses from './courses';
-import * as courseActions from "./app/actions/CourseActions";
 import Start from './start';
-import * as startActions from "./app/actions/StartActions";
 import Finish from './finish';
-import * as finishActions from "./app/actions/FinishActions";
 import StartMinutesMargins from './startMinutesMargins';
-import * as startMinutesMarginsActions from "./app/actions/StartMinutesMarginActions";
 import FinishMinutesMargins from './finishMinutesMargins';
-import * as finishMinutesMarginsActions from "./app/actions/FinishMinutesMarginActions";
+import * as examActions from "./app/actions/ExamActions";
 
 import axios from "axios";
 
@@ -20,24 +16,24 @@ import logo from './logo.svg';
 
 import Alert from "@mui/material/Alert";
 
-function App() {
+function Schedule() {
 
   const [state, setState] = useState('');
 
-  const course = useSelector((store) => store.course.course);
-  const start = useSelector((store) => store.start.start);
-  const finish = useSelector((store) => store.finish.finish);
-  const startMinutesMargin = useSelector((store) => store.startMinutesMargin.startMinutesMargin);
-  const finishMinutesMargin = useSelector((store) => store.finishMinutesMargin.finishMinutesMargin);
+  const course = useSelector((store) => store.course);
+  const start = useSelector((store) => store.start);
+  const finish = useSelector((store) => store.finish);
+  const startMinutesMargin = useSelector((store) => store.startMinutesMargin);
+  const finishMinutesMargin = useSelector((store) => store.finishMinutesMargin);
 
   const dispatch = useDispatch();
 
   const clearInputs = () => {
-    dispatch(courseActions.course(""));
-    dispatch(startActions.start(""));
-    dispatch(finishActions.finish(""));
-    dispatch(startMinutesMarginsActions.startMinutesMargin(""));
-    dispatch(finishMinutesMarginsActions.finishMinutesMargin(""));
+    dispatch(examActions.course(""));
+    dispatch(examActions.start(""));
+    dispatch(examActions.finish(""));
+    dispatch(examActions.startMinutesMargin(""));
+    dispatch(examActions.finishMinutesMargin(""));
   };
 
   const upload = useCallback(() => {
@@ -123,4 +119,4 @@ function App() {
   );
 }
 
-export default App;
+export default Schedule;

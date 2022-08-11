@@ -8,7 +8,7 @@ import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 
-import * as startActions from "./app/actions/StartActions";
+import * as examActions from "./app/actions/ExamActions";
 
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
@@ -16,10 +16,10 @@ import TextField from '@mui/material/TextField';
 const Start = () => {
 
   const dispatch = useDispatch();
-  const start = useSelector((store) => store.start.start);
+  const start = useSelector((store) => store.start);
 
   const handleChange = (event) => {
-    dispatch(startActions.start(event));
+    dispatch(examActions.start(event));
   };
 
   return (

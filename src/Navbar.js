@@ -1,16 +1,49 @@
 import {React, useState, useEffect} from "react";
+import { BrowserRouter as Router, Routes, Route, Link, useLocation } from "react-router-dom";
 
 import Login from "./Login";
 import Logout from "./Logout";
-import App from "./App";
+import Schedule from "./Schedule";
+import Reschedule from "./Reschedule";
 
 import logo from './logo.svg';
 
 import Cookies from 'js-cookie';
+import Button from "@mui/material/Button";
+import Box from "@mui/material/Box";
 
 import './App.css'
 
-const Navbar = () => {
+const NavbarList = () => {
+  const location = useLocation().pathname
+
+  const list = () => {
+    return(
+      <div>
+        <Box m={0} pt={0}>
+          <Button component={Link} to="/agendar" variant="contained">Agendar examen</Button>
+        </Box>
+        <br/>
+        <Box m={0} pt={0}>
+          <Button component={Link} to="/reagendar" variant="contained">Reagendar examen</Button>
+        </Box>
+      </div>
+    )
+  }
+
+  return(
+    location === "/" ? list() : null
+  )
+};
+
+const NavbarButton = () => {
+  const location = useLocation().pathname
+  return(
+    location === "/" ? null : <Button component={Link} to="/" variant="text">Volver</Button>
+  )
+};
+
+const Home = () => {
   const [token, setToken] = useState('')
   useEffect(() => {
     
@@ -26,7 +59,7 @@ const Navbar = () => {
         <>
           <br/>
           <Logout/>
-          <App />
+          <NavbarList />
         </>
         :
         <>
@@ -40,5 +73,22 @@ const Navbar = () => {
     </>
   )
 };
+
+const Navbar = () => {
+  return (
+    <Router>
+      <div className="center">
+        <Home />
+
+        <Routes>
+          <Route path="/agendar"  element={<Schedule/>}></Route>
+          <Route path="/" element={null}></Route>
+        </Routes>
+
+        <NavbarButton />
+      </div>
+    </Router>
+  );
+}
 
 export default Navbar;
