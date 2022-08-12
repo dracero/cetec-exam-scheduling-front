@@ -8,6 +8,7 @@ import Start from './start';
 import Finish from './finish';
 import StartMinutesMargins from './startMinutesMargins';
 import FinishMinutesMargins from './finishMinutesMargins';
+import SearchButton from './searchButton';
 import * as examActions from "./app/actions/ExamActions";
 
 import axios from "axios";
@@ -16,15 +17,18 @@ import logo from './logo.svg';
 
 import Alert from "@mui/material/Alert";
 
-function Schedule() {
+function Reschedule() {
 
   const [state, setState] = useState('');
+  let valor = document.cookie.split("token=");
+  const cookie = useState(valor[1]);
 
   const course = useSelector((store) => store.course);
   const start = useSelector((store) => store.start);
   const finish = useSelector((store) => store.finish);
   const startMinutesMargin = useSelector((store) => store.startMinutesMargin);
   const finishMinutesMargin = useSelector((store) => store.finishMinutesMargin);
+  const id = useSelector((store) => store.id);
 
   const dispatch = useDispatch();
 
@@ -36,14 +40,15 @@ function Schedule() {
     dispatch(examActions.finishMinutesMargin(""));
   };
 
-  const upload = useCallback(() => {
+  const update = useCallback(() => {
 
     const data = {
       course: course,
-      start: new Date(start),
-      finish: new Date(finish),
+      start: start,
+      finish: finish,
       startMinutesMargin: startMinutesMargin,
       finishMinutesMargin: finishMinutesMargin,
+      withCredentials: true
     }
 
     if (
@@ -59,7 +64,7 @@ function Schedule() {
     }
 
     axios
-      .post("http://localhost:8080/exam/", null, { params: data , withCredentials: true })
+      .put("http://localhost:8080/exam/" + id + "/?secret_token="+cookie[0], data)
       .then(function (response) {
         //handle success
         console.log("EXITO");
@@ -85,11 +90,12 @@ function Schedule() {
         <Finish />
         <StartMinutesMargins />
         <FinishMinutesMargins />
-        <button onClick={upload}> Agregar nuevo examen </button>
+        <SearchButton />
+        <button onClick={update}> Actualizar examen </button>
         {(state === 'Success') &&
           <div>
             <Alert variant="outlined" severity="success">
-              Examen agregado exitosamente.
+              Examen actualizado exitosamente.
             </Alert>
           </div>
         }
@@ -105,4 +111,4 @@ function Schedule() {
   );
 }
 
-export default Schedule;
+export default Reschedule;

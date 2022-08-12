@@ -82,6 +82,7 @@ const Navbar = () => {
 
         <Routes>
           <Route path="/agendar"  element={<Schedule/>}></Route>
+          <Route path="/reagendar"  element={<Reschedule/>}></Route>
           <Route path="/" element={null}></Route>
         </Routes>
 
