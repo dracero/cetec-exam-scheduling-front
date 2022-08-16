@@ -15,6 +15,7 @@ import axios from "axios";
 import logo from './logo.svg';
 
 import Alert from "@mui/material/Alert";
+import Button from "@mui/material/Button";
 
 function Schedule() {
 
@@ -85,7 +86,9 @@ function Schedule() {
         <Finish />
         <StartMinutesMargins />
         <FinishMinutesMargins />
-        <button onClick={upload}> Agregar nuevo examen </button>
+        <Button variant="contained" onClick={upload} >
+          Agregar nuevo examen
+        </Button>
         {(state === 'Success') &&
           <div>
             <Alert variant="outlined" severity="success">

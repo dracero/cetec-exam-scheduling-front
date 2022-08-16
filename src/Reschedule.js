@@ -16,6 +16,7 @@ import axios from "axios";
 import logo from './logo.svg';
 
 import Alert from "@mui/material/Alert";
+import Button from "@mui/material/Button";
 
 function Reschedule() {
 
@@ -91,7 +92,9 @@ function Reschedule() {
         <StartMinutesMargins />
         <FinishMinutesMargins />
         <SearchButton />
-        <button onClick={update}> Actualizar examen </button>
+        <Button variant="contained" onClick={update} disabled={(id === '')} >
+          Actualizar examen
+        </Button>
         {(state === 'Success') &&
           <div>
             <Alert variant="outlined" severity="success">

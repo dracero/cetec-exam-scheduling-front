@@ -8,17 +8,18 @@ import Box from "@mui/material/Box";
 const SearchButton = () => {
   const id = useSelector((store) => store.id);
   const start = useSelector((store) => store.start);
+  const course = useSelector((store) => store.course);
   const dispatch = useDispatch();
 
   const search = (event) => {
     event.preventDefault();
 
     axios
-      .get("http://localhost:8080/exam/?start="+ start, { withCredentials: true })
+      .get("http://localhost:8080/exam/?start=" + start + "&course=" + course, { withCredentials: true })
       .then(response => {
         if(!response.data) {
           dispatch(examActions.reset());
-          console.log('Error: no existe una estructura con el comienzo ' + start + '');
+          console.log('Error: no existe un examen del curso ' + course + ' con la fecha de inicio ' + start);
         
         } else {
           const newExam = {
@@ -30,14 +31,12 @@ const SearchButton = () => {
             finishMinutesMargin: response.data.finishMinutesMargin,
           }
           dispatch(examActions.exam(newExam));
-          //document.getElementById("outlined-basic-text").value = response.data.text;
         }
       })
       .catch(error => {
         let errorMessage = error
         dispatch(examActions.reset());
         console.log(errorMessage);
-        //document.getElementById("outlined-basic-name").value = '';
       });
   }
 
