@@ -1,7 +1,7 @@
 // import logo from './logo.svg';
 import './App.css';
 
-import { React, useCallback, useState } from "react";
+import { React, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Courses from './courses';
 import Start from './start';
@@ -41,7 +41,7 @@ function Reschedule() {
     dispatch(examActions.finishMinutesMargin(""));
   };
 
-  const update = useCallback(() => {
+  const update = () => {
 
     const data = {
       course: course,
@@ -65,36 +65,24 @@ function Reschedule() {
     }
 
     axios
-      .put("http://localhost:8080/exam/" + id + "/?secret_token="+cookie[0], data)
+      .put(process.env.REACT_APP_URL + "/exam/" + id + "/?secret_token="+cookie[0], data)
       .then(function (response) {
         //handle success
-        console.log("EXITO");
         setState('Success');
         clearInputs();
       })
       .catch(function (response) {
         //handle error
-        
-        console.log("ERROR");
         setState('Error');
       });
 
-  }, [course, start, finish, startMinutesMargin, finishMinutesMargin]);
+  };
   
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} alt="Logo FIUBA" className="logo-img" />
-        <div className="Title">EXAM SCHEDULING</div>
-        <Courses />
-        <Start />
-        <Finish />
-        <StartMinutesMargins />
-        <FinishMinutesMargins />
-        <SearchButton />
-        <Button variant="contained" onClick={update} disabled={(id === '')} >
-          Actualizar examen
-        </Button>
+        <div className="Title">REAGENDADOR</div>
         {(state === 'Success') &&
           <div>
             <Alert variant="outlined" severity="success">
@@ -109,6 +97,15 @@ function Reschedule() {
             </Alert>
           </div>
         }
+        <Courses />
+        <Start />
+        <Finish disabled={(id === '')}/>
+        <StartMinutesMargins disabled={(id === '')}/>
+        <FinishMinutesMargins disabled={(id === '')}/>
+        <SearchButton disabled={(id === '')}/>
+        <Button variant="contained" onClick={update}  id="exam-btn" disabled={(id === '')} >
+          Actualizar examen
+        </Button>
       </header>
     </div>
   );

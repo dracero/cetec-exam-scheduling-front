@@ -12,7 +12,7 @@ const finishMinutesMargins = [
   15
 ]
 
-const FinishMinutesMargins = () => {
+const FinishMinutesMargins = ({disabled}) => {
 
   const dispatch = useDispatch();
   const finishMinutesMargin = useSelector((store) => store.finishMinutesMargin);
@@ -22,7 +22,7 @@ const FinishMinutesMargins = () => {
   };
 
   return (
-    <FormControl sx={{ m: 1, minWidth: 300 }} size="small">
+    <FormControl sx={{ m: 1, minWidth: 300 }} size="small" disabled={disabled}>
       <InputLabel id="demo-select-medium">Margen de finalización</InputLabel>
       <Select
         labelId="demo-select-medium"

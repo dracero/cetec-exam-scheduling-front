@@ -12,7 +12,7 @@ const startMinutesMargins = [
   15
 ]
 
-const StartMinutesMargins = () => {
+const StartMinutesMargins = ({disabled}) => {
 
   const dispatch = useDispatch();
   const startMinutesMargin = useSelector((store) => store.startMinutesMargin);
@@ -22,7 +22,7 @@ const StartMinutesMargins = () => {
   };
 
   return (
-    <FormControl sx={{ m: 1, minWidth: 300 }} size="small">
+    <FormControl sx={{ m: 1, minWidth: 300 }} size="small" disabled={disabled}>
       <InputLabel id="demo-select-medium">Margen de inicio</InputLabel>
       <Select
         labelId="demo-select-medium"

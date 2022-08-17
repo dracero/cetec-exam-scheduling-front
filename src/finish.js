@@ -11,7 +11,7 @@ import * as examActions from "./app/actions/ExamActions";
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 
-const Finish = () => {
+const Finish = ({disabled}) => {
 
   const dispatch = useDispatch();
   const finish = useSelector((store) => store.finish);
@@ -28,6 +28,7 @@ const Finish = () => {
             value={finish || null}
             onChange={handleChange}
             renderInput={(params) => <TextField {...params} sx={{ m: 1 }} />}
+            disabled={disabled}
           />
         </Stack>
       </LocalizationProvider>

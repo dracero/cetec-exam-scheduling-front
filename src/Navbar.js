@@ -65,7 +65,7 @@ const Home = () => {
         <>
           <br/>
           <img src={logo} alt="Logo FIUBA" className="logo-img" />
-          <div className="Title center">EXAM SCHEDULING</div>
+          <div className="Title center">AGENDADOR</div>
           <Login />
         </>
       }

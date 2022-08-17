@@ -1,7 +1,7 @@
 // import logo from './logo.svg';
 import './App.css';
 
-import { React, useCallback, useState } from "react";
+import { React,  useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Courses from './courses';
 import Start from './start';
@@ -37,7 +37,7 @@ function Schedule() {
     dispatch(examActions.finishMinutesMargin(""));
   };
 
-  const upload = useCallback(() => {
+  const upload = () => {
 
     const data = {
       course: course,
@@ -60,35 +60,24 @@ function Schedule() {
     }
 
     axios
-      .post("http://localhost:8080/exam/", null, { params: data , withCredentials: true })
+      .post(process.env.REACT_APP_URL + "/exam/", null, { params: data , withCredentials: true })
       .then(function (response) {
         //handle success
-        console.log("EXITO");
         setState('Success');
         clearInputs();
       })
       .catch(function (response) {
         //handle error
-        
-        console.log("ERROR");
         setState('Error');
       });
 
-  }, [course, start, finish, startMinutesMargin, finishMinutesMargin]);
+  };
   
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} alt="Logo FIUBA" className="logo-img" />
-        <div className="Title">EXAM SCHEDULING</div>
-        <Courses />
-        <Start />
-        <Finish />
-        <StartMinutesMargins />
-        <FinishMinutesMargins />
-        <Button variant="contained" onClick={upload} >
-          Agregar nuevo examen
-        </Button>
+        <div className="Title">AGENDADOR</div>
         {(state === 'Success') &&
           <div>
             <Alert variant="outlined" severity="success">
@@ -103,6 +92,14 @@ function Schedule() {
             </Alert>
           </div>
         }
+        <Courses />
+        <Start />
+        <Finish />
+        <StartMinutesMargins />
+        <FinishMinutesMargins />
+        <Button variant="contained" onClick={upload} id="exam-btn">
+          Agregar nuevo examen
+        </Button>
       </header>
     </div>
   );

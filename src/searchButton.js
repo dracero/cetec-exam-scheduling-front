@@ -15,7 +15,7 @@ const SearchButton = () => {
     event.preventDefault();
 
     axios
-      .get("http://localhost:8080/exam/?start=" + start + "&course=" + course, { withCredentials: true })
+      .get(process.env.REACT_APP_URL + "/exam/?start=" + start + "&course=" + course, { withCredentials: true })
       .then(response => {
         if(!response.data) {
           dispatch(examActions.reset());
