@@ -59,6 +59,7 @@ const Home = () => {
         <>
           <br/>
           <Logout/>
+          <img src={logo} alt="Logo FIUBA" className="logo-img" />
           <NavbarList />
         </>
         :
