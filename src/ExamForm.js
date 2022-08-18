@@ -47,10 +47,10 @@ function ExamFrom({title, searchButton, sendName, send, successVerb}) {
     return data;
   };
 
-  const sendHandler = () => {
+  const sendHandler = async () => {
     let data = noNull();
     if (!data){ return }
-    if(send(data)) {
+    if(await send(data)) {
       dispatch(stateActions.state("Success"));
       dispatch(examActions.reset());
     } else {
