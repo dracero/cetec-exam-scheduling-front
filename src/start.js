@@ -2,10 +2,7 @@ import * as React from 'react';
 import { useSelector, useDispatch } from "react-redux";
 
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
-
-
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
-
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 
 import * as examActions from "./app/actions/ExamActions";
@@ -27,6 +24,8 @@ const Start = () => {
         <Stack spacing={3}>
           <DateTimePicker
             label="Hora de inicio"
+            inputFormat="DD/MM/YYYY HH:mm"
+            ampm={false}
             value={start || null}
             onChange={handleChange}
             renderInput={(params) => <TextField {...params} sx={{ m: 1 }} />}

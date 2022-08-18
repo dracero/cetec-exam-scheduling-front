@@ -25,6 +25,8 @@ const Finish = ({disabled}) => {
         <Stack spacing={3}>
           <DateTimePicker
             label="Hora de finalización"
+            inputFormat="DD/MM/YYYY HH:mm"
+            ampm={false}
             value={finish || null}
             onChange={handleChange}
             renderInput={(params) => <TextField {...params} sx={{ m: 1 }} />}
