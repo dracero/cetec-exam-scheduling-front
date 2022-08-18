@@ -15,7 +15,7 @@ const startMinutesMargins = [
 const StartMinutesMargins = ({disabled}) => {
 
   const dispatch = useDispatch();
-  const startMinutesMargin = useSelector((store) => store.startMinutesMargin);
+  const startMinutesMargin = useSelector((store) => store.exam.startMinutesMargin);
 
   const handleChange = (event) => {
     dispatch(examActions.startMinutesMargin(event.target.value));

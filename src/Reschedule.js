@@ -9,7 +9,7 @@ function Reschedule() {
   let valor = document.cookie.split("token=");
   const cookie = useState(valor[1]);
 
-  const id = useSelector((store) => store.id);
+  const id = useSelector((store) => store.exam.id);
 
   const update = async (data) => {
     return  axios

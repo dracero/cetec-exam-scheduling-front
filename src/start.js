@@ -16,7 +16,7 @@ import TextField from '@mui/material/TextField';
 const Start = () => {
 
   const dispatch = useDispatch();
-  const start = useSelector((store) => store.start);
+  const start = useSelector((store) => store.exam.start);
 
   const handleChange = (event) => {
     dispatch(examActions.start(event));

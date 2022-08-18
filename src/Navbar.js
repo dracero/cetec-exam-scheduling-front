@@ -1,10 +1,12 @@
 import {React, useState, useEffect} from "react";
+import { useDispatch } from "react-redux";
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from "react-router-dom";
 
 import Login from "./Login";
 import Logout from "./Logout";
 import Schedule from "./Schedule";
 import Reschedule from "./Reschedule";
+import * as stateActions from "./app/actions/StateActions";
 
 import logo from './logo.svg';
 
@@ -38,8 +40,13 @@ const NavbarList = () => {
 
 const NavbarButton = () => {
   const location = useLocation().pathname
+  const dispatch = useDispatch();
+  const resetState = () => {
+    dispatch(stateActions.state('Neutral'));
+  }
+
   return(
-    location === "/" ? null : <Button component={Link} to="/" variant="text">Volver</Button>
+    location === "/" ? null : <Button component={Link} onClick={resetState} to="/" variant="text">Volver</Button>
   )
 };
 

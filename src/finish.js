@@ -14,7 +14,7 @@ import TextField from '@mui/material/TextField';
 const Finish = ({disabled}) => {
 
   const dispatch = useDispatch();
-  const finish = useSelector((store) => store.finish);
+  const finish = useSelector((store) => store.exam.finish);
 
   const handleChange = (event) => {
     dispatch(examActions.finish(event));

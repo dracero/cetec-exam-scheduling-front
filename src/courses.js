@@ -15,7 +15,7 @@ const courses = [
 const Courses = () => {
 
   const dispatch = useDispatch();
-  const course = useSelector((store) => store.course);
+  const course = useSelector((store) => store.exam.course);
 
   const handleChange = (event) => {
     dispatch(examActions.course(event.target.value));

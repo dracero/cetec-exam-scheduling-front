@@ -1,14 +1,15 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import * as examActions from "./app/actions/ExamActions";
+import * as stateActions from "./app/actions/StateActions";
 import axios from "axios";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 
 const SearchButton = () => {
-  const id = useSelector((store) => store.id);
-  const start = useSelector((store) => store.start);
-  const course = useSelector((store) => store.course);
+  const id = useSelector((store) => store.exam.id);
+  const start = useSelector((store) => store.exam.start);
+  const course = useSelector((store) => store.exam.course);
   const dispatch = useDispatch();
 
   const search = (event) => {
@@ -18,9 +19,7 @@ const SearchButton = () => {
       .get(process.env.REACT_APP_URL + "/exam/?start=" + start + "&course=" + course, { withCredentials: true })
       .then(response => {
         if(!response.data) {
-          dispatch(examActions.reset());
-          console.log('Error: no existe un examen del curso ' + course + ' con la fecha de inicio ' + start);
-        
+          dispatch(stateActions.state("Error"));
         } else {
           const newExam = {
             id: response.data._id,
@@ -31,12 +30,12 @@ const SearchButton = () => {
             finishMinutesMargin: response.data.finishMinutesMargin,
           }
           dispatch(examActions.exam(newExam));
+          dispatch(stateActions.state("Neutral"));
         }
       })
-      .catch(error => {
-        let errorMessage = error
+      .catch(_error => {
         dispatch(examActions.reset());
-        console.log(errorMessage);
+        dispatch(stateActions.state("Error"));
       });
   }
 
